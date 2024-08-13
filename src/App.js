@@ -1,5 +1,5 @@
 import './App.css';
-import ForgotPassword from './components/ForgotPassword/ForgotPassword';
+import ForgotPassword from './components/ForgotPassword/RequestForgotPassword';
 import NewPassword from './components/ForgotPassword/NewPassword';
 
 function App() {
