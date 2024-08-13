@@ -1,29 +1,29 @@
 import { useState } from "react";
 
-let ForgotPassword = () => {
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState(""); // For success/error message
+const handleSubmit = ({e, email, setMessage}) => {
+  e.preventDefault();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const res = await fetch("http://localhost:8080/api/account/findEmail", {
-        method: "POST",
-        body: JSON.stringify({ email }),
-        headers: { "Content-Type": "application/json" },
-      });
-
+  try {
+    fetch("http://localhost:8080/api/account/findEmail", {
+      method: "POST",
+      body: JSON.stringify({ email }),
+      headers: { "Content-Type": "application/json" },
+    }).then((res) => {
       if (res.ok) {
         setMessage("Password reset email sent. Please check your inbox.");
       } else {
-        const data = await res.text();
+        const data = res.text();
         setMessage(`Error: ${data}`);
       }
-    } catch (error) {
-      setMessage(`Error: ${error.message}`);
-    }
-  };
+    })
+  } catch (error) {
+    setMessage(`Error: ${error.message}`);
+  }
+};
+
+let ForgotPassword = () => {
+  const [email, setEmail] = useState("");
+  const [message] = useState(""); // For success/error message
 
   return (
     <div className="d-flex flex-column align-items-center justify-content-center vh-100 bg-light">

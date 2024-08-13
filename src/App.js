@@ -1,6 +1,6 @@
 import './App.css';
-import ForgotPassword from './components/ForgotPassword/RequestForgotPassword';
-import NewPassword from './components/ForgotPassword/NewPassword';
+import ForgotPassword from './components/ForgotPassword/pages/RequestForgotPassword';
+import NewPassword from './components/ForgotPassword/pages/NewPassword';
 
 function App() {
   const url = window.location.href;
